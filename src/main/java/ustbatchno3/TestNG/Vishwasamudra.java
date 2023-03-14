@@ -24,11 +24,13 @@ public class Vishwasamudra {
 		System.out.println("Enter sqft : ");
 		int sqft = n.nextInt();
 		
+		//int price = 0;
+		
 		List<vishwadetails> lst = Arrays.asList(tvm,chennai,hyd,mumbai,kochi);
 		//lst.forEach(t->System.out.println(t));
-		
+		int ch = 0;
 		System.out.println("With or without material : (1 or 2 choose) : ");
-		int ch = n.nextInt();
+		ch = n.nextInt();
 		
 		int ans = vishwa(lst,ch,city,sqft);
 		
@@ -40,23 +42,20 @@ public class Vishwasamudra {
 	
 	public static int vishwa(List<vishwadetails> lst, int ch,String city,int sqft) {
 		List<vishwadetails> ls = lst.stream().filter(t->city.equals(t.getCity().toLowerCase())).toList();
-		//ls.forEach(t->System.out.println("City : " + t.getCity() + "\nPrice with material : " + sqft*t.getPricewithmat() + "\nPrice without material : " +  sqft*t.getPricewithoutmat() + "\n"));
-		int price=0;
+
+		int price = 0;
 		
-		
-		switch(ch) {
-		case 1 : for(vishwadetails v : ls)
-					price = v.getPricewithmat()*sqft;
-				break;
-				
-		case 2 : for(vishwadetails v : ls)
-					price = v.getPricewithoutmat()*sqft;
-				break;
-		default : System.out.println("break");price=3;
-				break;
+		if(ch==1) {
+			for(vishwadetails e:ls)
+				{price =  e.getPricewithmat();}
 		}
-		
+		else if(ch==2) {
+			for(vishwadetails e:ls) {
+				{price =  e.getPricewithoutmat();}
+			}
+		}
 		return price;
+		
 	}
 
 }
